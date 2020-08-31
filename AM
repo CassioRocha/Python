@@ -1,0 +1,192 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+
+@author: Cássio Rocha
+"""
+
+import pandas as pd
+import math
+import matplotlib.pyplot as plt
+
+
+df = pd.read_excel (r'C:\Users\Rocha\Desktop\Nova pasta (2)/gender.xlsx')
+df_m = df[df['Gender'] == 1]
+df_f = df[df['Gender'] == 0]
+
+#------------- Questão 1 ----------------------
+print("questão 1")
+# Altura das pessoas do Sexo Masculino 
+mean_height_m = df_m["Height"].mean()
+var_height_m = df_m["Height"].var()
+
+# Altura das pessoas do Sexo Masculino 
+mean_weight_m = df_m["Weight"].mean()
+var_weight_m = df_m["Weight"].var()
+
+print("\n")
+print('-------------------------------------------')
+print("Classe masculina (M):")
+print('A média das alturas', mean_height_m)
+print('A variância das alturas',var_height_m)
+print('A média dos pesos ',mean_weight_m)
+print('A variância dos pesos',var_weight_m)
+print('-------------------------------------------\n')
+
+
+
+
+# Feminino
+mean_height_f = df_f["Height"].mean()
+var_height_f = df_f["Height"].var()
+mean_weight_f = df_f["Weight"].mean()
+var_weight_f = df_f["Weight"].var()
+
+print('-------------------------------------------')
+print('Classe Feminina (F)')
+print('A média das alturas',mean_height_f)
+print('A variância das alturas',var_height_f)
+print('A média dos pesos ',mean_weight_f)
+print('A variância dos pesos',var_weight_f)
+print('-------------------------------------------')
+
+
+
+# ---------------Questão 2 --------------------------
+print("questão 2")
+
+
+def density_function(mean, var, x):
+    
+    a = 1.0 / ( math.sqrt(2 * math.pi * var) )
+    b = math.exp( -1 * (x - mean)**2 / (2 * var) )
+    
+    density = a * b
+    return density
+    
+def print_density_function(mean, var, name):
+    
+    a = 1.0 / ( math.sqrt(2 * math.pi * var) )
+    
+    print (f'\n{name} = {a:.3} * e ^ -(x - {mean:.3})ˆ2 / {2*var} ')
+
+print_density_function(mean_height_m, var_height_m, "fh1")  
+print_density_function(mean_weight_m, var_weight_m, "fw1")  
+print_density_function(mean_height_f, var_height_f, "fh0")  
+print_density_function(mean_weight_f, var_weight_f, "fw0")    
+    
+#----------------Questão 3 -----------------------------
+
+print("questão 3")
+
+plt.scatter(df_m["Height"], df_m["Weight"], s=1, c='pink', alpha=0.5)
+plt.title('Dispersão Altura Peso - Gênero Masculino')
+plt.xlabel('Altura')
+plt.ylabel('Peso')
+plt.savefig("dip_M.png", dpi=350)
+plt.show()
+    
+plt.scatter(df_f["Height"], df_f["Weight"], s=1, c='green', alpha=0.5)
+plt.title('Dispersão Altura Peso - Gênero Feminino')
+plt.xlabel('Altura')
+plt.ylabel('Peso')
+plt.savefig("dip_F.png", dpi=350)
+plt.show()
+    
+#------------------- Questão 4 ---------------------------------  
+print("questão 4")
+
+total = df.shape[0]
+m = df_m.shape[0] 
+f = df_f.shape[0]
+
+
+
+py1 = m/total
+py0 = f/total
+
+print(f'\nP(y=1) = {py1}')
+print(f'P(y=0) = {py0}')
+
+#----------------------- Questão 5 -------------------------------
+print("questão 5")
+
+
+# fh1 (h=68 | y=1) = 
+fh1 = density_function(mean_height_m, var_height_m, 68)
+print(f'\nfh1 (h=68 | y=1) = {fh1:.3}')
+
+# fw1 (w=169 | y=1) = 
+fw1 = density_function(mean_weight_m, var_weight_m, 169)
+print(f'fw1 (w=169 | y=1) = {fw1:.3}')
+
+#-----------------------------
+
+fh0 = density_function(mean_height_f, var_height_f, 68)
+print(f'fh0 (h=68 | y=0) = {fh0:.3}')
+
+fw0 = density_function(mean_weight_f, var_weight_f, 169)
+print(f'fw0 (w=169 | y=0) = {fw0:.3}')
+
+fhw1 = fh1*fw1
+print(f'fhw1 ((h=68, w=169) | y=1) = {fhw1:.3}')
+
+fhw0 = fh0*fw0
+print(f'fhw0 ((h=68, w=169) | y=0) = {fhw0:.3}')
+
+# --------------------Questão 6 ------------------------------------------
+
+print("\nQuestão 6")
+
+print(f'\nf ( y=1 | x = (h=68, w=169) ) = {fhw1 * py1:.3}')
+print(f'f ( y=0 | x = (h=68, w=169) ) = {fhw0 * py0:.3}')
+
+
+print(f'{fhw0 }')
+print(f'{fhw1 }')
+
+
+
+#------------------- Questão 8 -----------------------------------------
+
+print("\nQuestão 8")
+
+# new altura : 50  ----  new peso : 100
+
+# fh1 (h=50 | y=1) = 
+fh1 = density_function(mean_height_m, var_height_m, 50)
+print(f'\nfh1 (h=50 | y=1) = {fh1:.3}')
+
+# fw1 (w=100 | y=1) = 
+fw1 = density_function(mean_weight_m, var_weight_m, 100)
+print(f'fw1 (w=100 | y=1) = {fw1:.3}')
+
+# fh0 (h=50 | y=0) = 
+fh0 = density_function(mean_height_f, var_height_f, 50)
+print(f'fh0 (h=50 | y=0) = {fh0:.3}')
+
+# fw0 (w=100 | y=0) = 
+fw0 = density_function(mean_weight_f, var_weight_f, 100)
+print(f'fw0 (w=100 | y=0) = {fw0:.3}')
+
+fhw1 = fh1*fw1
+print(f'fhw1 ((h=50, w=100) | y=1) = {fhw1:.3}')
+
+fhw0 = fh0*fw0
+print(f'fhw0 ((h=50, w=100) | y=0) = {fhw0:.3}')
+
+print(f'\nf ( y=1 | x = (h=50, w=100) ) = {fhw1 * py1:.3}')
+print(f'f ( y=0 | x = (h=50, w=100) ) = {fhw0 * py0:.3}')
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
