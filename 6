@@ -129,17 +129,17 @@ fw0 = density_function(mean_weight_f, var_weight_f, 169)
 print(f'fw0 (w=169 | y=0) = {fw0:.3}')
 
 fhw1 = fh1*fw1
-print(f'fhw1 ((h=68, w=169) | y=1) = {fhw1:.3}')
+print(f'fhw1 ((h=68, w=169) | y=1) = {fhw1:.2}')
 
 fhw0 = fh0*fw0
-print(f'fhw0 ((h=68, w=169) | y=0) = {fhw0:.3}')
+print(f'fhw0 ((h=68, w=169) | y=0) = {fhw0:.2}')
 
 # --------------------Questão 6 ------------------------------------------
 
 print("\nQuestão 6")
 
-print(f'\nf ( y=1 | x = (h=68, w=169) ) = {fhw1 * py1:.3}')
-print(f'f ( y=0 | x = (h=68, w=169) ) = {fhw0 * py0:.3}')
+print(f'\nf ( y=1 | x = (h=68, w=169) ) = {fhw1 * py1:.2}')
+print(f'f ( y=0 | x = (h=68, w=169) ) = {fhw0 * py0:.2}')
 
 
 print(f'{fhw0 }')
@@ -155,28 +155,28 @@ print("\nQuestão 8")
 
 # fh1 (h=50 | y=1) = 
 fh1 = density_function(mean_height_m, var_height_m, 50)
-print(f'\nfh1 (h=50 | y=1) = {fh1:.3}')
+print(f'\nfh1 (h=50 | y=1) = {fh1:.2}')
 
 # fw1 (w=100 | y=1) = 
 fw1 = density_function(mean_weight_m, var_weight_m, 100)
-print(f'fw1 (w=100 | y=1) = {fw1:.3}')
+print(f'fw1 (w=100 | y=1) = {fw1:.2}')
 
 # fh0 (h=50 | y=0) = 
 fh0 = density_function(mean_height_f, var_height_f, 50)
-print(f'fh0 (h=50 | y=0) = {fh0:.3}')
+print(f'fh0 (h=50 | y=0) = {fh0:.2}')
 
 # fw0 (w=100 | y=0) = 
 fw0 = density_function(mean_weight_f, var_weight_f, 100)
-print(f'fw0 (w=100 | y=0) = {fw0:.3}')
+print(f'fw0 (w=100 | y=0) = {fw0:.2}')
 
 fhw1 = fh1*fw1
-print(f'fhw1 ((h=50, w=100) | y=1) = {fhw1:.3}')
+print(f'fhw1 ((h=50, w=100) | y=1) = {fhw1:.2}')
 
 fhw0 = fh0*fw0
-print(f'fhw0 ((h=50, w=100) | y=0) = {fhw0:.3}')
+print(f'fhw0 ((h=50, w=100) | y=0) = {fhw0:.2}')
 
-print(f'\nf ( y=1 | x = (h=50, w=100) ) = {fhw1 * py1:.3}')
-print(f'f ( y=0 | x = (h=50, w=100) ) = {fhw0 * py0:.3}')
+print(f'\nf ( y=1 | x = (h=50, w=100) ) = {fhw1 * py1:.2}')
+print(f'f ( y=0 | x = (h=50, w=100) ) = {fhw0 * py0:.2}')
 
 
 
